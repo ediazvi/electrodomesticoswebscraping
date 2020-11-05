@@ -94,7 +94,7 @@ if len(url_list) == 0:
 # Recorremos cada una de las paginas del producto obteniendo la descripcion y el precio.    
 print("Recorremos los sites...")
 
-f =  open('webscraping.csv', 'w', newline='')
+f =  open('electrodata.csv', 'w', newline='')
 f.write("Descripcion, Precio\n")
 
 descripcion = ""
