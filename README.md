@@ -13,5 +13,5 @@ Este proyecto ha sido realizado conjuntamente por Angel Bustamante y Eduardo Dia
 
 ## Ficheros
 
-src/PRAC1_AngelEduardo_UserAgent.py: script python para ejecutar el proceso de scraping 
-src/webscraping.csv: fichero datos creado por el script
+M2.851_PRAC1_WebScraping_AngelEduardo.py: script python para ejecutar el proceso de scraping.
+ElectroData.csv: fichero datos creado por el script
