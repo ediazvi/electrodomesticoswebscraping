@@ -95,10 +95,12 @@ if len(url_list) == 0:
 print("Recorremos los sites...")
 
 f =  open('electrodata.csv', 'w', newline='')
-f.write("Descripcion, Precio\n")
+f.write("Descripcion, Precio, Agotado, Categoria\n")
 
 descripcion = ""
 precio = ""
+agotado = "NO"
+categoria = ""
 
 for url in url_list:
     
@@ -130,12 +132,28 @@ for url in url_list:
             #print ("...Obtenemos los precios")
             tags = soup.find('span', class_='product-price')
             precio = tags.getText()
+            precio = precio.replace(",",".")
             
-            print ("%s , %s" %(descripcion, precio))
-            f.write("%s , %s\n" %(descripcion, precio))
+            # Categoria del producto
+            #print ("...Obtenemos la categoria")
+            ##tags=soup.find('div', class_='col-wrapper title-wrapper')
+            tags = soup.find('nav', class_= 'like-h1-style woocommerce-breadcrumb')
+            categoria = tags.getText()
+            # Recortamos la cadena
+            categoria = categoria[1:categoria.find("|")]
+            
+            # Existencia del producto
+            # En algunos productos hemos encontrado este flag
+            # que queremos registar tambien.
+            tags=soup.find('div', class_='out-of-stock-flag')
+            if (tags):
+                agotado="SI"
+            
+            print ("%s , %s , %s, %s" %(descripcion, precio, agotado, categoria))
+            f.write("%s , %s, ,%s, %s\n" %(descripcion, precio, agotado, categoria))   
         
         except:
-            print("...No se encontraron datos")
+            print("...No se pudo encontrar alguno de los datos.")
 
     time.sleep(1)
     #time.sleep(1 + random.randrange(5))
