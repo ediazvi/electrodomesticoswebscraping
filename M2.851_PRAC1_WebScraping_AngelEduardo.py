@@ -94,8 +94,8 @@ if len(url_list) == 0:
 # Recorremos cada una de las paginas del producto obteniendo la descripcion y el precio.    
 print("Recorremos los sites...")
 
-f =  open('electrodata.csv', 'w', newline='')
-f.write("Descripcion, Precio, Agotado, Categoria\n")
+f =  open('electrodata.csv', 'w', newline='',encoding="utf-8")
+f.write("Descripcion,Precio,Agotado,Categoria\n")
 
 descripcion = ""
 precio = ""
@@ -130,9 +130,11 @@ for url in url_list:
             # Ejemplo:
             # #<span class="product-price"><span class="woocommerce-Price-amount amount">550<span class="woocommerce-Price-currencySymbol">€</span></span></span>
             #print ("...Obtenemos los precios")
+            # Reemplazamos la coma por el punto y eliminamos el caracter €
             tags = soup.find('span', class_='product-price')
             precio = tags.getText()
             precio = precio.replace(",",".")
+            precio = precio.replace('€','')
             
             # Categoria del producto
             #print ("...Obtenemos la categoria")
@@ -145,12 +147,15 @@ for url in url_list:
             # Existencia del producto
             # En algunos productos hemos encontrado este flag
             # que queremos registar tambien.
+            #print("....Miramos si está agotado")
+            tags=None
+            agotado = "NO"
             tags=soup.find('div', class_='out-of-stock-flag')
             if (tags):
                 agotado="SI"
             
-            print ("%s , %s , %s, %s" %(descripcion, precio, agotado, categoria))
-            f.write("%s , %s, ,%s, %s\n" %(descripcion, precio, agotado, categoria))   
+            print ("%s,%s,%s,%s" %(descripcion, precio, agotado, categoria))
+            f.write("%s,%s,%s,%s\n" %(descripcion, precio, agotado, categoria))   
         
         except:
             print("...No se pudo encontrar alguno de los datos.")
