@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import time
 import csv
 import random
+import unicodedata
 
 # Preparamos variables
 url_list = list()
@@ -125,6 +126,8 @@ for url in url_list:
             #print ("...Obtenemos los nombres")
             tags = soup.find('h1', class_='product_title entry-title')
             descripcion = tags.getText()
+            # Forzamos la normalización
+            descripcion=unicodedata.normalize("NFKD",descripcion)
             
             # Precio del producto
             # Ejemplo:
@@ -135,6 +138,8 @@ for url in url_list:
             precio = tags.getText()
             precio = precio.replace(",",".")
             precio = precio.replace('€','')
+             # Forzamos la normalización
+            precio=unicodedata.normalize("NFKD",precio)
             
             # Categoria del producto
             #print ("...Obtenemos la categoria")
@@ -143,6 +148,8 @@ for url in url_list:
             categoria = tags.getText()
             # Recortamos la cadena
             categoria = categoria[1:categoria.find("|")]
+            # Forzamos la normalización
+            categoria=unicodedata.normalize("NFKD",categoria)
             
             # Existencia del producto
             # En algunos productos hemos encontrado este flag
@@ -153,6 +160,8 @@ for url in url_list:
             tags=soup.find('div', class_='out-of-stock-flag')
             if (tags):
                 agotado="SI"
+             # Forzamos la normalización
+            agotado=unicodedata.normalize("NFKD",agotado)
             
             print ("%s,%s,%s,%s" %(descripcion, precio, agotado, categoria))
             f.write("%s,%s,%s,%s\n" %(descripcion, precio, agotado, categoria))   
