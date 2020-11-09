@@ -15,4 +15,10 @@ Este proyecto ha sido realizado conjuntamente por Angel Bustamante y Eduardo Dia
 
 M2.851_PRAC1_WebScraping_AngelEduardo.py: script python para ejecutar el proceso de scraping.
 
-electrodata.csv: fichero datos creado por el script
+M2.851_PRAC1_WebScraping_AngelEduardo.ipynb: libro Jupiter usado en el desarrollo de la practica.
+
+electrodata.csv: fichero datos creado por el script.
+
+Documentacion entrega practica: respuestas a las preguntas planteadas en el enunciado de la practica.
+
+sitex.txt: listado de enlaces a raspar con el script.
