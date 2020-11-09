@@ -19,6 +19,6 @@ M2.851_PRAC1_WebScraping_AngelEduardo.ipynb: libro Jupiter usado en el desarroll
 
 electrodata.csv: fichero datos creado por el script.
 
-Documentacion entrega practica: respuestas a las preguntas planteadas en el enunciado de la practica.
+Documentacion entrega practica.docx: respuestas a las preguntas planteadas en el enunciado de la practica.
 
-sitex.txt: listado de enlaces a raspar con el script.
+sites.txt: listado de enlaces a raspar con el script.
